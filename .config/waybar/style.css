@@ -1,0 +1,150 @@
+/*
+  Тёмно-розовая тема Waybar (минималистичная),
+  - font-size: 14px
+  - уменьшенные отступы
+  - закругление 8px (вместо 12px)
+  - фон rgba(40,40,40,0.8) и розовый текст #ffc0cb
+*/
+
+/* ---------- Определяем цвета (как в предыдущем) ---------- */
+/* @define-color bar-bg rgba(0,0,0,0); */
+@define-color bar-bg #0f0f14;
+/* @define-color bar-bg #130e13; */
+
+/* @define-color main-bg rgba(15,15,20,0.8); */
+/* @define-color main-bg rgba(0, 0, 0, 0); */
+@define-color main-bg #0f0f14;
+/* @define-color main-bg rgba(30,24,36,0.8); */
+/* @define-color main-bg rgba(81,41,81,1); */
+/* @define-color main-bg #130e13; */
+
+/* @define-color main-fg #ffc0cb;            Розовый текст ca9ee6ff */
+@define-color main-fg #ca9ee6;   
+@define-color hover-bg #272732;          /* При наведении */
+@define-color ws-btn-bg #1a1a1f;          /* Фон кнопки воркспейса */
+@define-color ws-btn-hover #333342;       /* Hover кнопки воркспейса */
+@define-color ws-btn-active #f5c2e7;      /* Активный воркспейс */
+@define-color ws-btn-active-fg #2a2a36;   /* Текст активного воркспейса */
+/* надо доделать отдельно для бг тултипа */
+
+/* ---------- Общие стили ---------- */
+* {
+  border: none;
+  border-radius: 0; /* базовое значение, отдельные элементы задают своё */
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12px;
+  font-weight: bold;
+  color: @main-fg;
+  min-height: 10px;  /* добавлено для согласованности */
+}
+
+/* Waybar */
+window#waybar.mainbar {
+  background: @bar-bg;
+  border-radius: 8px;
+  box-shadow: none;
+  border: 1px solid @main-fg;
+  /* border: none; */
+}
+
+/* tooltip */
+tooltip {
+  background: @main-bg;
+  color: @main-fg;
+  border-radius: 8px;  /* изменено с 4px */
+  padding: 3px 5px;
+}
+
+/* ----- Левые модули ----- */
+#custom-archlogo,
+#tray,
+#mpris {
+  background: @main-bg;
+  margin: 1px;
+  padding: 3px 4px;
+  border-radius: 8px; /* изменено с 4px */
+  transition: background 0.2s ease;
+}
+#custom-archlogo:hover,
+#tray:hover,
+#mpris:hover {
+  background: @hover-bg;
+}
+#custom-archlogo label {
+  color: @main-fg;
+}
+
+/* ----- Workspaces -> #workspaces ----- */
+#workspaces {
+  background: @main-bg;
+  margin: 1px;
+  padding: 3px 4px;
+  border-radius: 8px; /* изменено с 4px */
+  transition: background 0.2s ease;
+}
+#workspaces:hover {
+  background: @hover-bg;
+}
+
+/* Кнопки воркспейсов */
+#workspaces button {
+  border-radius: 8px; /* изменено с 3px */
+  margin: 1px;
+  padding: 2px 3px;
+  background: @ws-btn-bg;
+  color: @main-fg;
+  transition: background 0.2s ease, all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+#workspaces button:hover {
+  background: @ws-btn-hover;
+}
+#workspaces button.focused {
+  background: @ws-btn-active;
+  color: @ws-btn-active-fg;
+  /* можно добавить дополнительные отступы и переход, если нужно более динамичное оформление */
+}
+
+/* ----- Часы (#clock) ----- */
+#clock {
+  background: @main-bg;
+  margin: 1px;
+  padding: 3px 4px;
+  border-radius: 8px; /* изменено с 4px */
+  transition: background 0.2s ease;
+}
+#clock:hover {
+  background: @hover-bg;
+}
+
+/* ----- Группы (#monitoring, #system) ----- */
+#monitoring,
+#system {
+  background: @main-bg;
+  margin: 1px;
+  padding: 3px 4px;
+  border-radius: 8px; /* изменено с 4px */
+  transition: background 0.2s ease;
+}
+#monitoring:hover,
+#system:hover {
+  background: @hover-bg;
+}
+
+/* Модули внутри групп */
+#network,
+#memory,
+#temperature,
+#hyprland-language,
+#wireplumber,
+#battery,
+#custom-power {
+  margin: 0 3px;
+}
+
+/* Tray menu */
+#tray menu * {
+  min-height: 16px;
+}
+#tray menu separator {
+  min-height: 10px;
+}
