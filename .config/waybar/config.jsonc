@@ -1,130 +1,146 @@
 {
-  // ---------- Общие параметры ----------
-  "layer": "top",
-  "position": "top",
-  "height": 31,           // компактная высота
-  "spacing": 4,           // узкие промежутки между модулями
-  "margin": "5 10 0 10",
-  "name": "mainbar",
-  "passthrough": false,
+    // ---------- Общие параметры ----------
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 0,
+    "margin": "3px 11px -4px 11px",
+    "name": "mainbar",
+    "passthrough": false,
 
-  // ---------- Блоки модулей ----------
-  "modules-left": [
-    "custom/archlogo",
-    "hyprland/workspaces",
-    "tray",
-    "mpris"
-  ],
-  "modules-center": [
-    "clock"
-  ],
-  "modules-right": [
-    "group/monitoring",
-    "group/system"
-  ],
+    // ---------- Блоки модулей ----------
+    "modules-left": [
+        "custom/archlogo",
+        "hyprland/workspaces",
+        "mpris"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "group/monitoring",
+        "group/system"
+    ],
 
-  // ---------- Группы ----------
-  "group/monitoring": {
-    "orientation": "horizontal",
-    "modules": [
-      "network",
-      "memory",
-      "temperature"
-    ]
-  },
-  "group/system": {
-    "orientation": "horizontal",
-    "modules": [
-      "hyprland/language",
-      "wireplumber",
-      "battery",
-      "custom/power"
-    ]
-  },
-
-  // ---------- Модули ----------
-  "custom/archlogo": {
-    "format": "{} ",
-    "rotate": 0,
-    "exec": "echo ; echo ",
-    "return-type": "text",
-    // "on-click": "/home/stlr/.local/bin/change_wallpaper.sh", надо доделать, не работает
-    "interval": 999999999
-  },
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "disable-scroll": false
-  },
-  "tray": {
-    "icon-size": 16,
-    "spacing": 5,
-    "show-passive-items": true
-  },
-  "mpris": {
-    "interval": 1,
-    "format": "{artist} - {title}",
-    "tooltip-format": "Player: {player}\nArtist: {artist}\nTitle: {title}",
-    "status-icons": {
-      "playing": "",
-      "paused":  "",
-      "stopped": ""
+    // ---------- Группы ----------
+    "group/monitoring": {
+        "orientation": "horizontal",
+        "spacing": 8,
+        "modules": [
+            "tray",
+            "memory",
+            "temperature"
+        ]
     },
-    "ignored-players": ["firefox"]
-  },
-  
-  "clock": {
-    "interval": 1,
-    "format": "{:%A, %d %B %Y %H:%M:%S}",
-    "tooltip": true,
-    "tooltip-format": "<big>{calendar}</big>",
-    "calendar": {
-      "mode": "month",
-      "weeks-pos": "right",
-      "on-scroll": 1
+    "group/system": {
+        "orientation": "horizontal",
+        "spacing": 8,
+        "margin": "0 16px 0 0",
+        "modules": [
+            "network",
+            "hyprland/language",
+            "wireplumber",
+            "battery",
+            "custom/power"
+        ]
+    },
+
+    // ---------- Модули ----------
+
+    "custom/archlogo": {
+        "format": " ",
+        "exec": "echo ",
+        "return-type": "text",
+        "interval": 0,
+        "on-click-right": "/home/stlr/.config/waybar/wallpaper.sh",
+        "on-click": "bash -lc '/home/stlr/.config/waybar/wallpaper.sh select'",
+        "tooltip": false
+    },
+    
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "disable-scroll": false
+    },
+    "mpris": {
+        "interval": 1,
+        "format": "{artist} - {title}",
+        "tooltip-format": "Player: {player}\nArtist: {artist}\nTitle: {title}"
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S %A, %d.%m.%Y}",
+        "tooltip": true,
+        "tooltip-format": "<big>{calendar}</big>"
+    },
+
+    "network": {
+        "interval": 3,
+        "interface": "wlan0",
+        "format-wifi": " ",
+        "format-ethernet": " {ifname} ({ipaddr})",
+        "format-disconnected": "---",
+        "tooltip": true,
+        "tooltip-format": "Wi‑Fi: {essid}\nIP: {ipaddr}"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "{used:0.1f}GiB",
+        "tooltip": false
+    },
+
+    "temperature": {
+        "interval": 10,
+        "thermal-zone": 0,
+        "format": " {temperatureC}°C",
+        "critical-threshold": 80,
+        "tooltip": false
+    },
+
+    "hyprland/language": {
+        "interval": 1,
+        "format": "{}",
+        "format-ru": "RU",
+        "format-en": "EN"
+    },
+
+    "wireplumber": {
+        "interval": 1,
+        "format": "{icon}  {volume}%",
+        "format-muted": " Muted",
+        "format-icons": ["","",""],
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 1%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 1%-",
+        "tooltip": false
+    },
+
+    "battery": {
+        "interval": 30,
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-icons": ["","","","",""],
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 5,
+        "show-passive-items": true
+    },
+
+    "custom/power": {
+        "format": " ",
+        "exec": "echo ",
+        "on-click": "wlogout",
+        "interval": 86400,
+        "tooltip": false
     }
-  },
-  "network": {
-    "interval": 3,
-    "interface": "enp3s0",
-    "format-ethernet": " ",
-    "format-wifi": " {essid} {signalStrength}%",
-    "format-disconnected": "Disconnected"
-  },
-  "memory": {
-    "interval": 10,
-    "format": "{used:0.1f}GiB"
-  },
-  "temperature": {
-    "interval": 10,
-    "thermal-zone": 0,
-    "format": "{temperatureC}°C"
-  },
-  "hyprland/language": {
-    "interval": 1,
-    "format": "{}",
-    "format-ru": "Russian (RU)",
-    "format-us": "English (US)"
-  },
-  "wireplumber": {
-    "interval": 1,
-    "format": "{volume}% {icon} ",
-    "format-muted": "Mute",
-    "format-icons": ["","",""],
-    "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-"
-  },
-  "battery": {
-    "interval": 30,
-    "format": "{icon} {capacity}%",
-    "format-icons": ["","","","",""]
-  },
-  "custom/power": {
-    "format": "{} ",
-    "rotate": 0,
-    "exec": "echo ; echo  logout",
-    "on-click": "wlogout",
-    "on-click-right": "wlogout",
-    "interval" : 86400, // once every day
-    "tooltip": true
-  }
 }

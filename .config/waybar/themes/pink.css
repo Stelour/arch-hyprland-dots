@@ -1,0 +1,22 @@
+/* @define-color bar-bg               #0f0f14;     Фон панели
+@define-color main-bg              #0f0f14;    Фон модулей */
+@define-color bar-bg               #19191f;    /* Фон панели */
+@define-color main-bg              #19191f;    /* Фон модулей */
+@define-color main-fg              #ca9ee6;    /* Основной текст/иконки */
+@define-color hover-bg             #272732;    /* Фон модуля при hover (неактивен) */
+@define-color border-bar           #ca9ee6;     /* Цвет барьера */
+
+/* @define-color ws-btn-bg            #1a1a1f;     Фон кнопки воркспейса */
+@define-color ws-btn-bg            rgba(0, 0, 0, 0);    /* Фон кнопки воркспейса */
+@define-color ws-btn-hover         #333342;    /* Hover кнопки воркспейса (неактивен) */
+@define-color ws-btn-active        #f5c2e7;    /* Фон активного воркспейса */
+@define-color ws-btn-active-fg     #2a2a36;    /* Текст активного воркспейса */
+
+@define-color network-fg           #ca9ee6;    /* Цвет индикатора сети */
+@define-color memory-fg            #ffc0cb;    /* Цвет индикатора памяти */
+@define-color cpu-fg               #f5c2e7;    /* Цвет индикатора CPU */
+@define-color temperature-fg       #96c9fb;    /* Цвет индикатора температуры */
+@define-color battery-ok-fg        #f0e3b0;    /* Цвет батареи (норм) */
+@define-color battery-critical-fg  #f28fad;    /* Цвет батареи (крит) */
+@define-color mpris-fg             #e39ac9;    /* Цвет для MPRIS */
+@define-color archlogo-fg          #74c7ec;    /* Цвет для логотипа Arch */

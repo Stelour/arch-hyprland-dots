@@ -1,0 +1,59 @@
+/* ~/.config/rofi/config-wallpaper.rasi */
+
+configuration {
+    show-icons: true;
+    lines: 0;
+    columns: 0;
+    padding: 10px;
+    width: 50%;
+}
+
+@theme "/usr/share/rofi/themes/material.rasi"
+
+* {
+    bg: #11121D;
+    bg-selected: #313244;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+inputbar {
+    enabled: false;
+}
+
+window {
+    height: 60%;
+    width: 50%;
+}
+
+listview {
+    columns:  3;        /* три колонки */
+    lines: 2;        /* две строки */
+    spacing: 20px;     /* расстояние между плитками */
+    fixed-height: 200px;    /* высота каждой плитки */
+}
+
+element {
+    margin: 5px;
+    padding: 5px;
+    background-color: transparent;
+}
+
+element-icon {
+    size: 255px;
+    background-color: transparent;
+}
+
+element-text {
+    text-color: transparent;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    height: 0;
+}
+
+mainbox {
+    children: [listview];
+}
