@@ -1,163 +1,103 @@
 # arch-hyprland-dots
 
-Мой кастомный конфиг под **Arch Linux + Hyprland**.
-
-Сейчас он в двух темах — **pink** и новая **frost** — и постепенно расширяется: автоматизация обоев, улучшенный Waybar и директория обоев.
-
-**Для тех, кто понимает, что делает.**
->В этом конфиге нет автоматизации установки — ты сам разбираешься, что и как ставишь, и как это должно работать.
-  
+Personal configuration for **Arch Linux + Hyprland**.
 
 <img src="img/preview1.png" alt="screenshot" width="800">
-
 <img src="img/preview2.png" alt="screenshot" width="800">
-
 <img src="img/preview3.png" alt="screenshot" width="800">
-
 <img src="img/preview4.png" alt="screenshot" width="800">
 
+## What’s Inside
 
-  
-## 📦 Что включено
+- **Hyprland**  
+  – `hyprland.conf` + `hyprlock.conf`  
+- **Waybar**  
+- **Kitty**  
+- **Rofi**  
+- **Cava**  
+- **Neofetch**  
+- **Dunst**  
+- **Wallpapers**  
 
-
-
-- `Hyprland` — compositor
-
-- `hyprland.conf` + `hyprlock.conf`
-
-- `waybar` (обновлённый внешний вид)
-
-- `kitty`
-
-- `rofi` (кастомизация в планах, но настроен под wallpaper change с помощью вайбара)
-
-- `cava`
-
-- `neofetch` — маленький отдельный конфиг
-
-- Директория с обоями: `.config/Wallpapers`
-
-- Курсор: [`bibata-cursor-theme`](https://aur.archlinux.org/packages/bibata-cursor-theme)
-
-  
-
-## 🛠️ Что нужно установить вручную
-
-  
+## Installation
 
 ```bash
+# Pacman
+sudo pacman -S waybar rofi hyprlock cava swww ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd ttf-font-awesome
 
-sudo pacman -S waybar rofi wlogout hyprlock cava swww
+# AUR
+yay -S grimblast-git bibata-cursor-theme wlogout
 
-yay -S grimblast-git bibata-cursor-theme
-
-sudo pacman -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd ttf-font-awesome
-
+# Make the wallpaper script executable
 chmod +x ~/.config/waybar/wallpaper.sh
-
 ```
 
-  
+## Manual Configuration
 
-## ⚙️ Темы и переключение
+1. **Browser**: Spicetify is configured to use `Zen Browser`. If you use a different browser, update it in the Spicetify config.
+2. **Displays**: Set your monitor parameters in `hyprland.conf`.
+3. **Network Interface (Waybar)**: In `~/.config/waybar/config.jsonc`:
 
-  
+   ```jsonc
+   "network": {
+     "interface": "enp3s0", // ← replace with your interface name
+   }
+   ```
+4. **Battery**: If you’re on a desktop (no battery), disable the battery block in `waybar/config.jsonc`.
+5. **Audio**: The config assumes Pipewire for the Waybar audio module.
 
-В этой версии добавлена новая тема **frost**, сохранилась **pink**. Переключаются они вручную правкой `source`/`include`:
+## Themes & Switching
 
-  
+Two themes are available: **frost** and **pink**. Switch manually by editing the include/source lines:
 
 ### Hyprland
 
-В конце `~/.config/hypr/hyprland.conf` раскомментируй нужную строку:
+In `~/.config/hypr/hyprland.conf`:
 
 ```ini
-
-# Раскомментируй нужный соурсник соответственно закомментировав старый:
-
-source = themes/frost.css
-
 # source = themes/pink.css
-
+source = themes/frost.css
 ```
-
-  
 
 ### Kitty
 
-В `~/.config/kitty/kitty.conf` аналогично:
+In `~/.config/kitty/kitty.conf`:
 
 ```conf
-
 # include themes/pink.conf
-
 include themes/frost.conf
-
 ```
-
-  
 
 ### Waybar
 
-В `~/.config/waybar/style.css`:
+In `~/.config/waybar/style.css`:
 
 ```css
-
 /* @import "themes/pink.css"; */
-
 @import "themes/frost.css";
-
 ```
-
-  
 
 ### Cava
 
-Цвета для cava вручную скопировать из файлов тем ~/.config/cava/config/themes и заменить в `~/.config/cava/config`.
+Copy the desired color settings from `~/.config/cava/config/themes/{pink,frost}` into `~/.config/cava/config`.
 
-  
+## Waybar Automation
 
-## 🔄 Автоматизация в Waybar
+* **Wallpaper Switching**
 
-  
+  * Left-click: open chooser (from `~/.config/Wallpapers/`)
+  * Right-click: switch to next wallpaper
+* **Volume**
 
-- **Смена обоев**
+  * Left-click: mute/unmute
+  * Right-click: open `pavucontrol`
 
-- LКМ по иконке Arch → выбрать обои вручную
+## Other
 
-- ПКМ → следующие по списку из `.config/Wallpapers`
+* **Cava, Neofetch, Kitty, Dunst**: all styled to match the overall theme
 
-- **Звук**
+## TODO
 
-- LКМ по модулю звука → mute/unmute
-
-- ПКМ → открыть `pavucontrol`
-
-  
-
-## 🗂️ Neofetch
-
-  
-
-Добавлен небольшой конфиг для `neofetch` в `~/.config/neofetch/config.conf`.
-
-  
-
-## 📂 Директория обоев
-
-  
-
-`.config/Wallpapers/` — сюда складывайте картинки, они используются для автоматической смены через Waybar.
-
-  
-
-## 🎯 В планах
-
-  
-
-- Ещё пару тем
-
-- Автоматическая смена тем с помощью waybar
-
-- Кастомизация rofi
+* Additional ready-to-use themes
+* Theme switching directly from Waybar
+* Extended Rofi customization

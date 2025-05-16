@@ -4,7 +4,7 @@
 WALLPAPER_DIR="$HOME/.config/Wallpapers"
 STATE_FILE="$HOME/.config/waybar/current_wallpaper"
 SWWW_CMD="swww img"
-TRANS_OPTS="--transition-type random --transition-step 6"
+TRANS_OPTS="--transition-type random --transition-step 3"
 
 mapfile -t WALLS < <(find "$WALLPAPER_DIR" -type f \( \
     -iname "*.jpg" -o -iname "*.jpeg" \

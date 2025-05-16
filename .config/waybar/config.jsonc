@@ -2,9 +2,9 @@
     // ---------- Общие параметры ----------
     "layer": "top",
     "position": "top",
-    "height": 30,
+    "height": 28,
     "spacing": 0,
-    "margin": "3px 11px -4px 11px",
+    "margin": "0px 8px -2px 8px",
     "name": "mainbar",
     "passthrough": false,
 
@@ -46,12 +46,11 @@
     },
 
     // ---------- Модули ----------
-
     "custom/archlogo": {
         "format": " ",
         "exec": "echo ",
         "return-type": "text",
-        "interval": 0,
+        "interval": 1,
         "on-click-right": "/home/stlr/.config/waybar/wallpaper.sh",
         "on-click": "bash -lc '/home/stlr/.config/waybar/wallpaper.sh select'",
         "tooltip": false
@@ -62,8 +61,14 @@
         "disable-scroll": false
     },
     "mpris": {
-        "interval": 1,
-        "format": "{artist} - {title}",
+        "player": "spotify",
+        "interval": 0,
+        "format": "{artist} - {title} | {status_icon}",
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": "■"
+        },
         "tooltip-format": "Player: {player}\nArtist: {artist}\nTitle: {title}"
     },
 
@@ -77,6 +82,7 @@
     "network": {
         "interval": 3,
         "interface": "wlan0",
+        // "interface": "enp3s0",
         "format-wifi": " ",
         "format-ethernet": " {ifname} ({ipaddr})",
         "format-disconnected": "---",
@@ -107,27 +113,29 @@
 
     "wireplumber": {
         "interval": 1,
-        "format": "{icon}  {volume}%",
+        "format": "{icon}",
         "format-muted": " Muted",
         "format-icons": ["","",""],
         "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
-        "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 1%+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 1%-",
-        "tooltip": false
+        "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-",
+        // "tooltip": false
+        "tooltip-format": "Volume: {volume}%"
     },
 
     "battery": {
-        "interval": 30,
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-full": "{icon} {capacity}%",
+        "interval": 20,
+        "format": "{icon}",
+        "format-charging": "",
+        "format-full": "{icon}",
         "format-icons": ["","","","",""],
         "states": {
             "warning": 20,
             "critical": 10
         },
-        "tooltip": false
+        // "tooltip": false
+        "tooltip-format": "Capacity: {capacity}%"
     },
 
     "tray": {
